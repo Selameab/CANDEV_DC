@@ -1,3 +1,5 @@
 tinydb
 flask
 bs4
+numpy
+requests
