@@ -31,7 +31,7 @@
 
         <!--   Export Buttons     -->
         <div class="container d-flex justify-content-end">
-            <button type="button" class="btn btn-dark">JSON</button> &nbsp; &nbsp; &nbsp;
+            <a class="btn btn-dark" href="{{url_for('export', format='JSON')}}">JSON</a> &nbsp; &nbsp; &nbsp;
             <button type="button" class="btn btn-dark">CSV</button> &nbsp; &nbsp; &nbsp;
             <button type="button" class="btn btn-dark">XML</button>
         </div>
@@ -101,7 +101,6 @@
                     ticks: {
                         beginAtZero: true
                     },
-
                 }]
             }
         }

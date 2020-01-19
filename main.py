@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect, jsonify,
 from reader import get_current_data, get_historic_data, ABBR_TO_FULL, ABBRS
 
 app = Flask(__name__, static_folder='web/static', template_folder='web/templates')
@@ -45,7 +45,14 @@ def history(abbr):
     return render_template("history.html", nav_active=get_nav_active(abbr), abbr=abbr, province=ABBR_TO_FULL[abbr], data=data)
 
 
-# jsonify
+@app.route("/export/<format>")
+def export(format):
+    if format == "JSON":
+        data = get_current_data()
+        return jsonify(data)
+    else:
+        return "Error!"
+
 
 if __name__ == '__main__':
     app.run(debug=True)
