@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, redirect, jsonify,
+from flask import Flask, render_template, url_for, redirect, jsonify
 from reader import get_current_data, get_historic_data, ABBR_TO_FULL, ABBRS
 
 app = Flask(__name__, static_folder='web/static', template_folder='web/templates')
