@@ -4,7 +4,8 @@ import random
 ABBR_TO_DB = {
     'ON': 'scrapers/ontario/ontario.json',
     'AB': 'scrapers/alberta/alberta.json',
-    'NS': 'scrapers/nova_scotia/NS.json'
+    'NS': 'scrapers/nova_scotia/NS.json',
+    'NB': 'scrapers/new_brunswick/NB.json'
 }
 
 ABBR_TO_FULL = {
