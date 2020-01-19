@@ -21,17 +21,17 @@
             <li class="nav-item {{nav_active['canada_map']}}">
                 <a class="nav-link" href="{{url_for('canada_map')}}">Map</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Ontario</a>
+            <li class="nav-item {{nav_active['ON']}}">
+                <a class="nav-link" href="{{url_for('history', abbr='ON')}}">Ontario</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Alberta</a>
+            <li class="nav-item {{nav_active['AB']}}">
+                <a class="nav-link" href="{{url_for('history', abbr='AB')}}">Alberta</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Nova Scotia</a>
+            <li class="nav-item {{nav_active['NS']}}">
+                <a class="nav-link" href="{{url_for('history', abbr='NS')}}">Nova Scotia</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">New Brunswick</a>
+            <li class="nav-item {{nav_active['NB']}}">
+                <a class="nav-link" href="{{url_for('history', abbr='NB')}}">New Brunswick</a>
             </li>
         </ul>
     </div>

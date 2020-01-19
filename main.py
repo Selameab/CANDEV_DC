@@ -13,12 +13,6 @@ def home():
     return redirect(url_for("summary"))
 
 
-@app.route("/canada_map")
-def canada_map():
-    data = get_current_data()
-    return render_template("canada_map.html", nav_active=get_nav_active('canada_map'), data=data)
-
-
 @app.route("/summary")
 def summary():
     data = get_current_data()
@@ -32,6 +26,23 @@ def summary():
                            table_data=table_data,
                            bar_graph_data=bar_graph_data,
                            nav_active=get_nav_active('summary'))
+
+
+@app.route("/canada_map")
+def canada_map():
+    data = get_current_data()
+
+    # Add a comma
+    for abbr in data:
+        data[abbr]['Demand'] = f"{data[abbr]['Demand']:,.0f}"
+
+    return render_template("canada_map.html", nav_active=get_nav_active('canada_map'), data=data)
+
+
+@app.route("/history/<abbr>")
+def history(abbr):
+    data = get_historic_data(abbr)
+    return render_template("history.html", nav_active=get_nav_active(abbr), abbr=abbr)
 
 
 if __name__ == '__main__':
