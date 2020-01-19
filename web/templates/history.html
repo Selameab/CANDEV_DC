@@ -195,13 +195,13 @@
                 backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
                 borderColor: window.chartColors.red,
                 fill: false,
-                data: [{
-                    x: newDateString(0),
-                    y: randomScalingFactor()
-                }, {
-                    x: newDateString(2),
-                    y: randomScalingFactor()
-                }
+                data: [
+                    {%for record in data %}
+                    {
+                        x: newDateString(0),
+                        y: randomScalingFactor()
+                    },
+                    {%endfor%}
                 ],
             }]
         },

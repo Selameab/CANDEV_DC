@@ -4,6 +4,7 @@ import random
 ABBR_TO_DB = {
     'ON': 'scrapers/ontario/ontario.json',
     'AB': 'scrapers/alberta/alberta.json',
+    'NS': 'scrapers/nova_scotia/NS.json'
 }
 
 ABBR_TO_FULL = {
@@ -60,10 +61,11 @@ def get_current_data():
 
 
 def main():
-    print(get_historic_data('ON')[-1])
+    print(get_historic_data('NS'))
+    # print(get_historic_data('ON')[-1])
     # print(get_demand('AB')[-1])
-    a = get_current_data()
-    print(get_current_data())
+    # a = get_current_data()
+    # print(get_current_data())
 
 
 if __name__ == '__main__':

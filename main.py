@@ -42,7 +42,7 @@ def canada_map():
 @app.route("/history/<abbr>")
 def history(abbr):
     data = get_historic_data(abbr)
-    return render_template("history.html", nav_active=get_nav_active(abbr), abbr=abbr, province=ABBR_TO_FULL[abbr])
+    return render_template("history.html", nav_active=get_nav_active(abbr), abbr=abbr, province=ABBR_TO_FULL[abbr], data=data)
 
 
 if __name__ == '__main__':
