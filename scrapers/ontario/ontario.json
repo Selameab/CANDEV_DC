@@ -1,1 +1,1 @@
-{"_default": {"1": {"Province": "Ontario", "Time": "202001190852", "Demand": 15978.9, "Supply": 17545.0}, "2": {"Province": "Ontario", "Time": "2020-01-19 08:52:00", "Demand": 15978.9, "Supply": 17545.0}, "3": {"Province": "Ontario", "Time": "2020-01-19 09:12:00", "Demand": 16269.4, "Supply": 17545.0}}}
+{"_default": {"1": {"Province": "Ontario", "Time": "2020-01-19 09:52:00", "Demand": 16510.0, "Supply": 18405.0}, "2": {"Province": "Ontario", "Time": "2020-01-19 10:12:00", "Demand": 16775.5, "Supply": 18405.0}}}
