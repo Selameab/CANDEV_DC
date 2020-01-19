@@ -8,13 +8,13 @@ ABBR_TO_DB = {
 
 ABBR_TO_FULL = {
     'ON': 'Ontario',
-    'QC': 'Quebec',
+    # 'QC': 'Quebec',
     'NS': 'Nova Scotia',
     'NB': 'New Brunswick',
-    'MB': 'Manitoba',
-    'BC': 'British Columbia',
-    'PE': 'Prince Edward Island',
-    'SK': 'Saskatchewan',
+    # 'MB': 'Manitoba',
+    # 'BC': 'British Columbia',
+    # 'PE': 'Prince Edward Island',
+    # 'SK': 'Saskatchewan',
     'AB': 'Alberta',
     'NL': 'Newfoundland and Labrador'
 }
