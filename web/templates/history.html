@@ -187,6 +187,7 @@
     }
 
     var color = Chart.helpers.color;
+    console.log(newDateString(0));
     var config = {
         type: 'line',
         data: {
@@ -198,8 +199,8 @@
                 data: [
                     {%for record in data %}
                     {
-                        x: newDateString(0),
-                        y: randomScalingFactor()
+                        x: "{{record['Time']}}",
+                        y: {{record['Demand']}}
                     },
                     {%endfor%}
                 ],

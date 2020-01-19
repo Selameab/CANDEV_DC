@@ -41,9 +41,11 @@ def canada_map():
 
 @app.route("/history/<abbr>")
 def history(abbr):
-    data = get_historic_data(abbr)
+    data = get_historic_data(abbr)[-20:]  # Fetch last 20 entries
     return render_template("history.html", nav_active=get_nav_active(abbr), abbr=abbr, province=ABBR_TO_FULL[abbr], data=data)
 
+
+# jsonify
 
 if __name__ == '__main__':
     app.run(debug=True)
