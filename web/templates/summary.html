@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}Summary{% endblock %}
+{% block script_head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>{% endblock %}
+{% block content %}
+<div class="row align-items-center">
+
+    <!--    Table-->
+    <div class="col">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Abbr.</th>
+                <th scope="col">Province</th>
+                <th scope="col">Electricity Demand (MW)</th>
+                <th scope="col">Last Updated</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {%for row in table_data %}
+            <tr>
+                <th scope="row">{{row['abbr']}}</th>
+                <td>{{row['province']}}</td>
+                <td>{{row['demand']}}</td>
+                <td>{{row['time']}}</td>
+            </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+
+        <!--   Export Buttons     -->
+        <div class="container d-flex justify-content-end">
+            <button type="button" class="btn btn-dark">JSON</button> &nbsp; &nbsp; &nbsp;
+            <button type="button" class="btn btn-dark">CSV</button> &nbsp; &nbsp; &nbsp;
+            <button type="button" class="btn btn-dark">XML</button>
+        </div>
+    </div>
+
+
+    <!--    Bar Graph-->
+    <div class="col">
+        <canvas id="myChart" width="100" height="100"></canvas>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block script_body %}
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [{{bar_graph_data['labels']|safe}}],
+            datasets: [{
+                // label: 'Instant Electricity Demand by Province',
+                data: [{{bar_graph_data['demands']|safe}}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(54, 162, 235, 0.9)',
+                    'rgba(255, 206, 86, 0.9)',
+                    'rgba(75, 192, 192, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(54, 162, 235, 0.9)',
+                    'rgba(255, 206, 86, 0.9)',
+                    'rgba(75, 192, 192, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(54, 162, 235, 0.9)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display: true
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    },
+
+                }]
+            }
+        }
+    });
+</script>
+
+{% endblock %}
