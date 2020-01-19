@@ -42,6 +42,19 @@ def GetTimeStamp(time_string):
     output = str(all_digits)[:12]
     return output
 
+def TransferToDate(time_string):
+    """
+    Function:
+        Transfer time stamp to datetime format.
+    """
+    year = int(time_string[:4])
+    month = int(time_string[4:6])
+    day = int(time_string[6:8])
+    hour = int(time_string[8:10])
+    sec = int(time_string[10:12])
+    date_time = datetime.datetime(year, month, day, hour, sec)
+    return date_time
+
 def OntarioFetch(url):
     """
     Function:
@@ -57,6 +70,8 @@ def OntarioFetch(url):
     start_time_stamp = soup.findAll("StartDate")
     last_time = GetTimeStamp(str(last_time_stamp[0]))
     start_time = GetTimeStamp(str(start_time_stamp[0]))
+    last_time = TransferToDate(last_time)
+    start_time = TransferToDate(start_time)
     all_data = soup.findAll("DataSet")
     data =all_data[0].findAll("Data")
     all_val = []
@@ -81,6 +96,8 @@ def OntarioSupplyFetch(supply_url):
     start_time_supply = soup_supply.findAll("StartDate")
     last_time = GetTimeStamp(str(last_time_supply[0]))
     start_time = GetTimeStamp(str(start_time_supply[0]))
+    last_time = TransferToDate(last_time)
+    start_time = TransferToDate(start_time)
     all_supply = soup_supply.findAll("DataSet")
     all_supplies = []
     for each_supply in all_supply:
@@ -116,8 +133,8 @@ def Publishing(freqency):
             demand, time_stamp, start_time = OntarioFetch(ontario_url)
             supply, time_stamp_sup, start_time_sup = OntarioSupplyFetch(ontario_supply_url)
             if time_stamp != last_time_stamp:
-                print("lastest data comes from time:" + time_stamp)
-                db.insert({'Province': 'Ontario', 'Time': time_stamp, 'Demand': demand, 'Supply': supply})
+                print("Ontario, lastest data comes from time:\t" , time_stamp)
+                db.insert({'Province': 'Ontario', 'Time': time_stamp.__str__(), 'Demand': demand, 'Supply': supply})
                 last_time_stamp = time_stamp
  
 if __name__ == "__main__":

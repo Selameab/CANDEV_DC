@@ -51,10 +51,10 @@ def AlbertaFetch(url):
                         internal_load = subrow_i.find(text = re.compile("Alberta Internal Load "))
                         if generation is not None:
                             str_content = str(subrow_i)
-                            generation_val = FindDigit(str_content)
+                            generation_val = float(FindDigit(str_content))
                         if internal_load is not None:
                             str_content = str(subrow_i)
-                            internal_load_val = FindDigit(str_content)
+                            internal_load_val = float(FindDigit(str_content))
             if time_content is not None:
                 time_target_row = row_i
                 time_subrows = time_target_row.findAll("tr")
@@ -67,9 +67,10 @@ def AlbertaFetch(url):
                     actual_time_parts = time_info[6].split(':')
                     hour = FindDigit(actual_time_parts[0])
                     sec = FindDigit(actual_time_parts[1])
-                    time_stamp = GetDateString(year, 4) + GetDateString(month, 2) + \
-                                GetDateString(day, 2) + GetDateString(hour, 2) + \
-                                GetDateString(sec, 2)
+                    # time_stamp = GetDateString(year, 4) + GetDateString(month, 2) + \
+                    #             GetDateString(day, 2) + GetDateString(hour, 2) + \
+                    #             GetDateString(sec, 2)
+                    time_stamp = datetime.datetime(year, month, day, hour, sec)
     return generation_val, internal_load_val, time_stamp
 
 def Publishing(freqency):
@@ -92,8 +93,8 @@ def Publishing(freqency):
             alberta_link = "http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet"
             alberta_total_net_generation, alberta_internal_load, time_stamp = AlbertaFetch(alberta_link)
             if time_stamp != last_time_stamp:
-                print("lastest data comes from time:" + time_stamp)
-                db.insert({'Province': 'Alberta', 'Time': time_stamp, 'Demand': alberta_internal_load, 'Supply': alberta_total_net_generation})
+                print("Alberta, lastest data comes from time:\t" , time_stamp)
+                db.insert({'Province': 'Alberta', 'Time': time_stamp.__str__(), 'Demand': alberta_internal_load, 'Supply': alberta_total_net_generation})
                 last_time_stamp = time_stamp
 
 if __name__ == "__main__":
